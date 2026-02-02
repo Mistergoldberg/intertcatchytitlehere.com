@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mashup</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Picarty Mashup camera experience for creating custom portrait mashups." />
+  <link rel="canonical" href="https://insertcatchytitlehere.com/Ad App/index.html" />
+  <meta property="og:title" content="Mashup" />
+  <meta property="og:description" content="Picarty Mashup camera experience for creating custom portrait mashups." />
+  <meta property="og:url" content="https://insertcatchytitlehere.com/Ad App/index.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://insertcatchytitlehere.com/mashup/assets/Mashup-Banner.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Mashup", "description": "Picarty Mashup camera experience for creating custom portrait mashups.", "url": "https://insertcatchytitlehere.com/Ad App/index.html"}</script>
+</head>
+  <body>
+    <main class="app">
+      <h1 class="sr-only">Mashup</h1>
+      <section class="screen screen-camera" id="cameraScreen">
+        <div class="frame" id="cameraFrame">
+          <video id="camera" playsinline muted></video>
+          <img id="maskOverlay" alt="" />
+
+          <div class="permission" id="permission">
+            <p>Allow camera access to get started.</p>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="shutter capture-btn" id="captureBtn" type="button"></button>
+        </div>
+      </section>
+
+      <section class="screen screen-preview" id="previewScreen">
+        <div class="frame">
+          <video id="previewVideo" playsinline muted loop></video>
+        </div>
+        <div class="preview-actions-bar">
+          <button class="action-button publish-button" type="button">Publish</button>
+          <button class="action-button edit-button" type="button">Edit</button>
+        </div>
+        <div class="controls">
+          <button class="shutter capture-btn" id="captureBtn" type="button"></button>
+        </div>
+      </section>
+    </main>
+
+    <canvas id="captureCanvas" aria-hidden="true"></canvas>
+    <script src="app.js"></script>
+  </body>
+</html>

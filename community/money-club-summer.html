@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Money Club — Summer Session</title>
+  <meta name="description" content="The Money Club — Summer Session. Teaching young entrepreneurs financial literacy, design thinking, and public speaking." />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --surface: rgba(255,255,255,0.06);
+      --surface-2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --faint: rgba(255,255,255,0.18);
+      --line: rgba(255,255,255,0.12);
+      --cta: rgba(255,255,255,0.92);
+      --ctaText: #0b1220;
+      --radius: 18px;
+      --radius-lg: 26px;
+      --shadow: 0 12px 36px rgba(0,0,0,0.35);
+      --max: 1120px;
+      --pad: clamp(18px, 3.5vw, 34px);
+      --gap: clamp(14px, 2.5vw, 22px);
+      --h1: clamp(34px, 5vw, 56px);
+      --h2: clamp(22px, 3vw, 30px);
+      --h3: clamp(18px, 2.2vw, 22px);
+      --body: clamp(15px, 1.5vw, 17px);
+      --small: clamp(12px, 1.2vw, 13.5px);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      background: radial-gradient(1200px 700px at 25% 10%, rgba(255,255,255,0.08), transparent 55%),
+                  radial-gradient(900px 600px at 80% 30%, rgba(255,255,255,0.06), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      font-size: var(--body);
+      letter-spacing: 0.1px;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .skip{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left: 18px; top: 18px; width:auto; height:auto;
+      background: rgba(255,255,255,0.12);
+      padding: 10px 12px;
+      border-radius: 12px;
+      outline: 2px solid rgba(255,255,255,0.22);
+      z-index: 9999;
+    }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,0.68);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px var(--pad);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 220px;
+    }
+    .mark{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      display:grid;
+      place-items:center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .brand .name{
+      display:flex;
+      flex-direction:column;
+      line-height: 1.1;
+    }
+    .brand .name strong{
+      font-weight: 650;
+      letter-spacing: 0.2px;
+      font-size: 14px;
+    }
+    .brand .name span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+    }
+    nav a:hover{
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      text-decoration: none;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none !important;
+      box-shadow: none;
+      white-space: nowrap;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.1); }
+    .btn.primary{
+      background: var(--cta);
+      color: var(--ctaText);
+      border-color: rgba(255,255,255,0.0);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    }
+    .btn.primary:hover{ filter: brightness(0.98); }
+
+    /* Layout */
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    section{
+      padding: clamp(38px, 6vw, 80px) 0;
+    }
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+    .panel{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--pad);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: var(--small);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+
+    h1{
+      font-size: var(--h1);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+    h2{
+      font-size: var(--h2);
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    h3{
+      font-size: var(--h3);
+      margin: 0 0 8px;
+    }
+    p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    .grid{
+      display:grid;
+      gap: var(--gap);
+    }
+    .grid.hero{
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: stretch;
+    }
+    .grid.two{
+      grid-template-columns: 1fr 1fr;
+    }
+    .grid.three{
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .list li{ margin: 8px 0; }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .kpi{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+    }
+    .kpi .label{
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .kpi .value{
+      font-size: 16px;
+      font-weight: 650;
+      color: var(--text);
+    }
+
+    /* Placeholders */
+    .ph{
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.06);
+      padding: 16px;
+      min-height: 180px;
+      display:flex;
+      flex-direction:column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .ph .title{
+      font-weight: 650;
+      color: rgba(255,255,255,0.88);
+    }
+    .ph .note{
+      font-size: 12px;
+      color: rgba(255,255,255,0.64);
+      line-height: 1.35;
+    }
+    .ph.tall{ min-height: 320px; }
+    .ph.short{ min-height: 140px; }
+
+    /* Open-book economics block */
+    .econ{
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.18);
+      padding: 18px;
+      overflow:hidden;
+    }
+    .econ .hdr{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .econ .hdr .left{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+    .econ .hdr .left .tag{
+      display:inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .econ pre{
+      margin: 0;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.9);
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.5;
+      overflow:auto;
+      white-space: pre;
+    }
+    .econ .bullets{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .econ .bullets .box{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* FAQ */
+    details{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      padding: 14px 16px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor: pointer;
+      font-weight: 650;
+      color: rgba(255,255,255,0.9);
+      list-style: none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin-top: 10px; }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--line);
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .foot{
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .foot .mini{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      max-width: 52ch;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .grid.hero{ grid-template-columns: 1fr; }
+      .grid.two{ grid-template-columns: 1fr; }
+      .grid.three{ grid-template-columns: 1fr; }
+      nav{ display:none; }
+      .kpis{ grid-template-columns: 1fr 1fr; }
+      .econ .bullets{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px){
+      .kpis{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Top navigation -->
+  <header class="topbar">
+    <div class="inner">
+      <a class="brand" href="#top" aria-label="The Money Club home">
+        <div class="mark" aria-hidden="true">LOGO</div>
+        <div class="name">
+          <strong>The Money Club</strong>
+          <span>Summer Session</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#openbook">Open-book math</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#who">Who runs it</a>
+        <a href="#details">Details</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="btn primary" href="#register">Reserve a spot</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="top">
+      <div class="wrap">
+        <div class="grid hero">
+          <div class="panel">
+            <div class="eyebrow">
+              <span class="pill">🚀 Summer cohort</span>
+              <span>Teaching Young Entrepreneurs</span>
+            </div>
+
+            <h1>We don’t teach money.<br/>We make it make sense.</h1>
+
+            <p>
+              A hands-on summer program for kids ages <strong>11–17</strong> that blends
+              <strong>financial literacy</strong>, <strong>design thinking</strong>, and <strong>public speaking</strong> —
+              taught through building real business ideas, not memorizing theory.
+            </p>
+
+            <div class="kpis" aria-label="Quick facts">
+              <div class="kpi">
+                <div class="label">Format</div>
+                <div class="value">Summer day program (1–2 weeks)</div>
+              </div>
+              <div class="kpi">
+                <div class="label">Cohorts</div>
+                <div class="value">Small by design (limited seats)</div>
+              </div>
+              <div class="kpi">
+                <div class="label">Outcome</div>
+                <div class="value">Build + price + present</div>
+              </div>
+              <div class="kpi">
+                <div class="label">Experience</div>
+                <div class="value">No prior experience required</div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+              <a class="btn primary" href="#register">Reserve a spot</a>
+              <a class="btn" href="#openbook">See the open-book math</a>
+              <a class="btn" href="#details">View schedule & pricing</a>
+            </div>
+
+            <p style="margin-top:14px; font-size:13px;">
+              <strong>Open-book model:</strong> we show you exactly where tuition goes — because we teach money honestly.
+            </p>
+          </div>
+
+          <!-- Right rail: visual placeholders -->
+          <div class="grid" style="gap: var(--gap);">
+            <div class="ph tall" role="img" aria-label="Placeholder for hero graphic">
+              <div class="title">[Placeholder Graphic: Hero Illustration / Photo]</div>
+              <div class="note">
+                Notes: Use warm, non-corporate visuals (kids collaborating, whiteboards, pitch night).
+                Avoid finance clichés (coins, charts, dollar signs).
+              </div>
+            </div>
+            <div class="ph short" role="img" aria-label="Placeholder for trust strip">
+              <div class="title">[Placeholder: Trust Strip / Partner Logos / Testimonials]</div>
+              <div class="note">
+                Notes: Add later (quotes, endorsements, community venue badge, safety/insurance note).
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="why">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">Why this exists</div>
+            <h2>School teaches formulas. Life demands judgment.</h2>
+            <p>
+              Most kids grow up without learning how money actually works — not as a concept, but as a system.
+              The result is smart kids who feel uncertain when money enters the conversation.
+            </p>
+            <ul class="list">
+              <li>How businesses make (or lose) money</li>
+              <li>Why good ideas fail without good math</li>
+              <li>How pricing works</li>
+              <li>How to explain value confidently</li>
+            </ul>
+            <p style="margin-top:12px;">
+              The Money Club closes that gap through hands-on building, real-world logic, and confident communication.
+            </p>
+          </div>
+
+          <div class="ph tall" role="img" aria-label="Placeholder for problem diagram">
+            <div class="title">[Placeholder Graphic: “The Gap” Diagram]</div>
+            <div class="note">
+              Notes: Simple 2-column visual: “School” vs “Real Life.” Keep it warm, minimal, and clear.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">How it works</div>
+            <h2>Built like a business — because that’s how learning sticks.</h2>
+            <p>
+              This isn’t a lecture series. Students learn by doing — in a small cohort with trained instructors.
+            </p>
+
+            <div class="grid" style="gap: 12px; margin-top: 12px;">
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>Week structure (example)</h3>
+                <ul class="list">
+                  <li>Find a real problem worth solving</li>
+                  <li>Design a simple solution</li>
+                  <li>Cost it, price it, and understand margin</li>
+                  <li>Test demand with signals (not surveys)</li>
+                  <li>Build a pitch and present with confidence</li>
+                </ul>
+              </div>
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>End-of-program outcome</h3>
+                <p>
+                  Every student can explain what they made, how it works, what it costs, how it’s priced,
+                  and why someone would pay — then present it clearly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="ph" role="img" aria-label="Placeholder for day-in-the-life">
+              <div class="title">[Placeholder Graphic: “Day in the Life” Timeline]</div>
+              <div class="note">
+                Notes: Visual schedule blocks (arrival, workshop, build time, break, pitch practice).
+              </div>
+            </div>
+            <div class="ph" role="img" aria-label="Placeholder for pitch night">
+              <div class="title">[Placeholder Graphic: Pitch Night Card]</div>
+              <div class="note">
+                Notes: Show a simple “Pitch Night” event card; emphasize celebration, not competition.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN-BOOK ECONOMICS -->
+    <section id="openbook">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">Open-book model</div>
+            <h2>We teach financial literacy — so we run the program with financial transparency.</h2>
+            <p>
+              Most programs hide their economics. We believe that defeats the point.
+              Here’s exactly how the summer program works — in plain math.
+            </p>
+
+            <div class="econ" aria-label="Income statement style block">
+              <div class="hdr">
+                <div class="left">
+                  <div class="tag">Summer cohort economics (example)</div>
+                  <div style="color: var(--muted); font-size: 13px;">
+                    Transparent by design. Adjust numbers as you finalize pricing and costs.
+                  </div>
+                </div>
+                <div class="pill">Open Book</div>
+              </div>
+
+              <pre>
+Student Fees
+20 kids × $500                         = $10,000
+
+Costs
+2 instructors paid $2,000 each         = -$4,000
+Space + insurance + materials          = -$2,000
+-----------------------------------------------
+Remaining margin                       =  $4,000
+              </pre>
+
+              <div class="bullets">
+                <div class="box">
+                  <strong style="color: rgba(255,255,255,0.9);">That margin funds:</strong><br/>
+                  curriculum development, coordination/admin, and reinvestment.
+                </div>
+                <div class="box">
+                  <strong style="color: rgba(255,255,255,0.9);">The loop:</strong><br/>
+                  the profit seeds the next cycle — sustainably and transparently.
+                </div>
+              </div>
+            </div>
+
+            <p style="margin-top:12px;">
+              This is <strong>open-book learning</strong>: kids learn best when adults model money honestly.
+            </p>
+          </div>
+
+          <div class="grid">
+            <div class="ph" role="img" aria-label="Placeholder for economics infographic">
+              <div class="title">[Placeholder Graphic: “Where Your Tuition Goes” Visual]</div>
+              <div class="note">
+                Notes: Donut chart or simple stacked bars. Keep muted colors. Add “Reinvestment” callout.
+              </div>
+            </div>
+            <div class="ph" role="img" aria-label="Placeholder for reinvestment loop">
+              <div class="title">[Placeholder Graphic: Reinvestment Flywheel]</div>
+              <div class="note">
+                Notes: “Tuition → Instructor pay + Safety/Insurance → Program → Margin → Next cohort.”
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section id="curriculum">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">Curriculum</div>
+            <h2>Practical modules that build capability (not just confidence).</h2>
+            <p>
+              The curriculum blends business fundamentals with design thinking and communication.
+              Students learn the mechanics behind real-world decisions: costs, value, demand, and clarity.
+            </p>
+
+            <div class="grid three" style="margin-top: 12px;">
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>Money fundamentals</h3>
+                <p style="font-size:13px;">Costs, pricing, margin, cash flow basics — why businesses fail.</p>
+              </div>
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>Design thinking</h3>
+                <p style="font-size:13px;">Observe friction, find problems, test solutions, iterate quickly.</p>
+              </div>
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>Public speaking</h3>
+                <p style="font-size:13px;">Explain value clearly, pitch confidently, answer questions.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <a class="btn" href="#register">Join the summer cohort</a>
+            </div>
+          </div>
+
+          <div class="ph tall" role="img" aria-label="Placeholder for curriculum map">
+            <div class="title">[Placeholder Graphic: Curriculum Map]</div>
+            <div class="note">
+              Notes: Show modules as cards or a simple roadmap. Keep it readable on mobile.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO RUNS IT -->
+    <section id="who">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">Who runs it</div>
+            <h2>Designed by a practitioner. Delivered by near-peer mentors.</h2>
+
+            <p>
+              The Money Club curriculum was designed by <strong>Jared Goldberg</strong>, a product strategist,
+              educator, and writer with experience across:
+            </p>
+            <ul class="list">
+              <li>Walmart</li>
+              <li>Loblaw</li>
+              <li>Canadian Tire</li>
+              <li>10+ years working with China-based manufacturing</li>
+              <li>Design thinking and product strategy</li>
+              <li>Teaching and curriculum development</li>
+            </ul>
+
+            <p style="margin-top:12px;">
+              The program is delivered by MBA students and early-career professionals —
+              trained facilitators who make business concepts relatable and human.
+            </p>
+          </div>
+
+          <div class="grid">
+            <div class="ph" role="img" aria-label="Placeholder for founder bio card">
+              <div class="title">[Placeholder Graphic: Founder Bio Card / Headshot]</div>
+              <div class="note">
+                Notes: Keep it minimal. Add a short “Why I built this” paragraph later.
+              </div>
+            </div>
+            <div class="ph" role="img" aria-label="Placeholder for instructor roster">
+              <div class="title">[Placeholder Graphic: Instructor Roster / Mentor Cards]</div>
+              <div class="note">
+                Notes: Add instructor names/photos once confirmed. Emphasize training + background checks if applicable.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILS -->
+    <section id="details">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">Summer session details</div>
+            <h2>Everything parents need to know — upfront.</h2>
+
+            <div class="grid" style="gap: 12px; margin-top: 12px;">
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>Quick facts</h3>
+                <ul class="list">
+                  <li><strong>Ages:</strong> 11–17</li>
+                  <li><strong>Duration:</strong> 1–2 weeks (choose cohort)</li>
+                  <li><strong>Format:</strong> Summer day program</li>
+                  <li><strong>Location:</strong> Community venue (shared after registration)</li>
+                  <li><strong>Materials:</strong> Included</li>
+                  <li><strong>Experience:</strong> None required</li>
+                </ul>
+              </div>
+
+              <div class="panel" style="background: rgba(255,255,255,0.04); box-shadow:none;">
+                <h3>Safety & logistics</h3>
+                <p>
+                  [Add your final language later: insurance coverage, supervision ratios, drop-off/pick-up policy,
+                  code of conduct, consent for photos, etc.]
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ph tall" role="img" aria-label="Placeholder for schedule and pricing">
+            <div class="title">[Placeholder Graphic: Schedule + Pricing Table]</div>
+            <div class="note">
+              Notes: Include cohort options, dates, hours, tuition, and what’s included.
+              Keep it scannable (parents will screenshot this).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="grid two">
+          <div class="panel">
+            <div class="eyebrow">FAQ</div>
+            <h2>Common questions (and honest answers).</h2>
+            <p>Keep this short. Remove doubt. Make it easy to say yes.</p>
+
+            <details>
+              <summary>Is this a “get rich” program?</summary>
+              <p>
+                No. It’s a “make money make sense” program: how value is created, how pricing works,
+                and how to communicate clearly — without hype or pressure.
+              </p>
+            </details>
+
+            <details>
+              <summary>Does my child need business experience?</summary>
+              <p>No. The program is designed for beginners. Curiosity is the only prerequisite.</p>
+            </details>
+
+            <details>
+              <summary>Why include the income statement upfront?</summary>
+              <p>
+                Because transparency is part of the lesson. We teach money honestly, so we run the program honestly.
+              </p>
+            </details>
+
+            <details>
+              <summary>What will my child leave with?</summary>
+              <p>
+                A clear understanding of costs/pricing/value, a finished mini-project, and the confidence to present it.
+              </p>
+            </details>
+          </div>
+
+          <div class="ph tall" role="img" aria-label="Placeholder for parent testimonial block">
+            <div class="title">[Placeholder Graphic: Testimonials / Quotes]</div>
+            <div class="note">
+              Notes: After first cohort, add 3 short quotes + 1 longer story.
+              Keep it human (“my kid explained pricing at dinner”).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="register">
+      <div class="wrap">
+        <div class="card" style="padding: var(--pad);">
+          <div class="grid two" style="align-items:center;">
+            <div>
+              <div class="eyebrow">Reserve your spot</div>
+              <h2>Join the Summer Cohort</h2>
+              <p>
+                Seats are limited to keep cohorts small and instruction meaningful.
+                Register early to secure your preferred dates.
+              </p>
+
+              <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px;">
+                <a class="btn primary" href="#"
+                   onclick="alert('Hook this up to your payment/registration flow later (Stripe, Shopify, etc.).'); return false;">
+                  Register & Pay
+                </a>
+                <a class="btn" href="mailto:hello@themoneyclub.example?subject=Money%20Club%20Summer%20Session%20Question"
+                   onclick="this.href=this.href.replace('themoneyclub.example','YOUR_EMAIL_DOMAIN.com');">
+                  Ask a question
+                </a>
+              </div>
+
+              <p style="margin-top: 10px; font-size: 13px;">
+                <strong>Note:</strong> Replace the registration button with your real checkout link.
+                Add refund policy and confirmation details here.
+              </p>
+            </div>
+
+            <div class="ph tall" role="img" aria-label="Placeholder for checkout embed">
+              <div class="title">[Placeholder: Embed Checkout / Registration Form]</div>
+              <div class="note">
+                Notes: Embed Stripe payment link, Typeform, Tally, or your own form. Keep it short: parent info, child age, cohort selection.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div class="mini">
+          <strong style="color: rgba(255,255,255,0.9);">The Money Club</strong>
+          <span>We don’t teach money. We make it make sense.</span>
+          <span style="margin-top:6px;">© <span id="yr"></span> The Money Club. All rights reserved.</span>
+        </div>
+
+        <div class="mini">
+          <span><strong style="color: rgba(255,255,255,0.9);">Contact</strong></span>
+          <span>Email: <a href="mailto:hello@themoneyclub.example"
+            onclick="this.href=this.href.replace('themoneyclub.example','YOUR_EMAIL_DOMAIN.com');">hello@YOUR_EMAIL_DOMAIN.com</a></span>
+          <span><a href="#openbook">Open-book economics</a> • <a href="#faq">FAQ</a> • <a href="#top">Back to top</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // small nicety: year in footer
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

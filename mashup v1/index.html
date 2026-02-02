@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mashup</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Picarty Mashup camera experience for creating custom portrait mashups." />
+  <link rel="canonical" href="https://insertcatchytitlehere.com/mashup v1/index.html" />
+  <meta property="og:title" content="Mashup" />
+  <meta property="og:description" content="Picarty Mashup camera experience for creating custom portrait mashups." />
+  <meta property="og:url" content="https://insertcatchytitlehere.com/mashup v1/index.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://insertcatchytitlehere.com/mashup/assets/Mashup-Banner.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Mashup", "description": "Picarty Mashup camera experience for creating custom portrait mashups.", "url": "https://insertcatchytitlehere.com/mashup v1/index.html"}</script>
+</head>
+  <body>
+    <main class="app">
+      <h1 class="sr-only">Mashup</h1>
+      <section class="screen screen-camera" id="cameraScreen">
+        <div class="frame" id="cameraFrame">
+          <video id="camera" playsinline muted></video>
+          <img id="maskOverlay" alt="" />
+
+          <div class="permission" id="permission">
+            <p>Allow camera access to get started.</p>
+            <button id="startCamera" type="button">Start Camera</button>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="controls-left">
+            <button class="tool-button tool-button-left" id="flipCameraBtn" type="button" aria-label="Flip camera">
+              <img src="assets/cam-toggle-icon.png" alt="" />
+            </button>
+            <button class="arrow arrow-left" id="prevMask" type="button">◀</button>
+          </div>
+          <button class="shutter capture-btn" id="captureBtn" type="button"></button>
+          <div class="controls-right">
+            <button class="arrow arrow-right" id="nextMask" type="button">▶</button>
+            <button class="tool-button" id="cropBtn" type="button" aria-label="Crop tool">
+              <img src="assets/crop-icon.png" alt="" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen screen-preview" id="previewScreen">
+        <div class="frame">
+          <img id="previewImage" alt="Your mashup" />
+        </div>
+        <div class="preview-actions">
+          <button id="saveBtn" type="button">Save</button>
+          <button id="reshootBtn" type="button">Re-shoot</button>
+        </div>
+        <div class="controls">
+          <button class="arrow arrow-left" id="prevMask" type="button">◀</button>
+          <button class="shutter capture-btn" id="captureBtn" type="button"></button>
+          <button class="arrow arrow-right" id="nextMask" type="button">▶</button>
+        </div>
+      </section>
+
+      <section class="screen screen-crop" id="cropScreen">
+        <div class="frame">
+          <canvas id="cropCanvas" aria-label="Crop preview"></canvas>
+          <div class="crop-slider" id="cropSlider">
+            <button id="cropUpBtn" class="crop-arrow" type="button" aria-label="Move crop up">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 6 5 15h14L12 6Z" fill="currentColor" />
+              </svg>
+            </button>
+            <div class="crop-track">
+              <div class="crop-thumb" id="cropThumb"></div>
+            </div>
+            <button id="cropDownBtn" class="crop-arrow" type="button" aria-label="Move crop down">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m12 18 7-9H5l7 9Z" fill="currentColor" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="preview-actions crop-actions" id="cropActions">
+          <button id="cropSaveBtn" type="button">Save</button>
+          <button id="cropReshootBtn" type="button">Re-shoot</button>
+        </div>
+      </section>
+    </main>
+
+    <canvas id="captureCanvas" aria-hidden="true"></canvas>
+    <script src="app.js"></script>
+  </body>
+</html>
