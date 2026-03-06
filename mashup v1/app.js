@@ -458,7 +458,7 @@ const isSecure =
   window.location.hostname === "127.0.0.1";
 
 if (!isSecure) {
-  setPermissionMessage("Camera needs HTTPS. Use https://insertcatchytitlehere.com/mashup.html");
+  setPermissionMessage("Camera needs HTTPS. Use https://intertcatchytitlehere.com/mashup.html");
 }
 
 updateMask(maskIndex);

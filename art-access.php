@@ -14,7 +14,7 @@ if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 $to = 'me@mistergoldberg.com';
 $subject = 'Art access request';
-$from = 'noreply@insertcatchytitlehere.com';
+$from = 'noreply@intertcatchytitlehere.com';
 $lines = [];
 $lines[] = 'Email: ' . $email;
 $message = implode("\n", $lines);
